@@ -14,6 +14,7 @@ window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 # reading csv
 words = pandas.read_csv("./data/french_words.csv")
 words_dict = words.to_dict()
+print(words_dict)
 updated_words_dict = words_dict
 
 
@@ -46,8 +47,8 @@ def wrong_pressed():
         canvas.itemconfig(language_text, text='French', fill='black')
         updated_data = pandas.read_csv('words_to_learn.csv')
         print(updated_data['French'].size)
-        key_value_pair = random.choice(list(updated_data.items()))
-        key = key_value_pair[0]
+        key_value_pair = random.choice(list(updated_data['French'].items()))
+        key = key_value_pair['French']
         random_word = key
         value = key_value_pair[1]
         canvas.itemconfig(word_text, text=random_word, fill='black')
@@ -55,7 +56,7 @@ def wrong_pressed():
     else:
         canvas.itemconfig(front_img, image=card_front)
         canvas.itemconfig(language_text, text='French', fill='black')
-        key_value_pair = random.choice(list(updated_data.items()))
+        key_value_pair = random.choice(list(words_dict.items()))
         key = key_value_pair[0]
         random_word = key
         value = key_value_pair[1]
